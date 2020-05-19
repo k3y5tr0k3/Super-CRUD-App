@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Super_CRUD_App.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace Super_CRUD_App.Windows.DetailsWindow
 {
     public partial class Details : Form
     {
-        public Details()
+        public Details(Superhero hero)
         {
             InitializeComponent();
+            DisplayHero(hero);
+        }
+
+        private void DisplayHero(Superhero hero)
+        {
+            SuperHeroNameInfoLbl.Text = hero.Name;
+            //
         }
     }
 }
