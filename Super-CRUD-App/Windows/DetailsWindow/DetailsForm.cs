@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Super_CRUD_App
+namespace Super_CRUD_App.Windows.DetailsWindow
 {
-    public partial class Form1 : Form
+    public partial class DetailsForm : Form
     {
-        public Form1()
+        public DetailsForm()
         {
             InitializeComponent();
         }
