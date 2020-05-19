@@ -19,16 +19,17 @@ namespace Super_CRUD_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Details());
+            Application.Run(new Details(GetSuperhero().GetAwaiter().GetResult()));
 
         }
 
-        public async static void DisplySuperHeroName()
+        public async static Task<Superhero> GetSuperhero()
         {
             SuperheroServiceManager manager = SuperheroServiceManager.getInstance();
             Superhero superhero = await manager.getSuperheroAsync(1);
 
-            Console.WriteLine(superhero.Name);
+            return superhero;
         }
+
     }
 }
