@@ -32,19 +32,18 @@
             this.SuperHeroNameInfoLbl = new System.Windows.Forms.Label();
             this.AbilityNameLbl = new System.Windows.Forms.Label();
             this.AbilityNameInfoLbl = new System.Windows.Forms.Label();
-            this.AbilityInfoLbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.AbilityDescriptionLbl = new System.Windows.Forms.Label();
+            this.RegionNameLbl = new System.Windows.Forms.Label();
+            this.AffinityTypeLbl = new System.Windows.Forms.Label();
+            this.OriginTypeLbl = new System.Windows.Forms.Label();
+            this.AliasFirstnameLbl = new System.Windows.Forms.Label();
+            this.AliasLastnameLbl = new System.Windows.Forms.Label();
+            this.AbilityDescriptionInfoLbl = new System.Windows.Forms.Label();
+            this.RegionNameInfoLbl = new System.Windows.Forms.Label();
+            this.AffinityTypeInfoLbl = new System.Windows.Forms.Label();
+            this.OriginTypeInfoLbl = new System.Windows.Forms.Label();
+            this.AliasFirstnameinfoLbl = new System.Windows.Forms.Label();
+            this.AliasLastnameInfoLbl = new System.Windows.Forms.Label();
             this.DetailsTitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -62,9 +61,8 @@
             this.SuperHeroNameInfoLbl.AutoSize = true;
             this.SuperHeroNameInfoLbl.Location = new System.Drawing.Point(265, 108);
             this.SuperHeroNameInfoLbl.Name = "SuperHeroNameInfoLbl";
-            this.SuperHeroNameInfoLbl.Size = new System.Drawing.Size(105, 17);
+            this.SuperHeroNameInfoLbl.Size = new System.Drawing.Size(0, 17);
             this.SuperHeroNameInfoLbl.TabIndex = 1;
-            this.SuperHeroNameInfoLbl.Text = "namenameXYZ";
             // 
             // AbilityNameLbl
             // 
@@ -78,156 +76,143 @@
             // AbilityNameInfoLbl
             // 
             this.AbilityNameInfoLbl.AutoSize = true;
-            this.AbilityNameInfoLbl.Location = new System.Drawing.Point(242, 72);
+            this.AbilityNameInfoLbl.Location = new System.Drawing.Point(274, 180);
             this.AbilityNameInfoLbl.Name = "AbilityNameInfoLbl";
             this.AbilityNameInfoLbl.Size = new System.Drawing.Size(0, 17);
             this.AbilityNameInfoLbl.TabIndex = 3;
             // 
-            // AbilityInfoLbl
+            // AbilityDescriptionLbl
             // 
-            this.AbilityInfoLbl.AutoSize = true;
-            this.AbilityInfoLbl.Location = new System.Drawing.Point(265, 180);
-            this.AbilityInfoLbl.Name = "AbilityInfoLbl";
-            this.AbilityInfoLbl.Size = new System.Drawing.Size(72, 17);
-            this.AbilityInfoLbl.TabIndex = 4;
-            this.AbilityInfoLbl.Text = "AbilityXYZ";
+            this.AbilityDescriptionLbl.AutoSize = true;
+            this.AbilityDescriptionLbl.Location = new System.Drawing.Point(85, 263);
+            this.AbilityDescriptionLbl.Name = "AbilityDescriptionLbl";
+            this.AbilityDescriptionLbl.Size = new System.Drawing.Size(79, 17);
+            this.AbilityDescriptionLbl.TabIndex = 5;
+            this.AbilityDescriptionLbl.Text = "Description";
             // 
-            // label1
+            // RegionNameLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 251);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
+            this.RegionNameLbl.AutoSize = true;
+            this.RegionNameLbl.Location = new System.Drawing.Point(85, 337);
+            this.RegionNameLbl.Name = "RegionNameLbl";
+            this.RegionNameLbl.Size = new System.Drawing.Size(53, 17);
+            this.RegionNameLbl.TabIndex = 6;
+            this.RegionNameLbl.Text = "Region";
             // 
-            // label2
+            // AffinityTypeLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 337);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "label2";
+            this.AffinityTypeLbl.AutoSize = true;
+            this.AffinityTypeLbl.Location = new System.Drawing.Point(85, 409);
+            this.AffinityTypeLbl.Name = "AffinityTypeLbl";
+            this.AffinityTypeLbl.Size = new System.Drawing.Size(86, 17);
+            this.AffinityTypeLbl.TabIndex = 7;
+            this.AffinityTypeLbl.Text = "Affinity Type";
             // 
-            // label3
+            // OriginTypeLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(85, 427);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "label3";
+            this.OriginTypeLbl.AutoSize = true;
+            this.OriginTypeLbl.Location = new System.Drawing.Point(580, 108);
+            this.OriginTypeLbl.Name = "OriginTypeLbl";
+            this.OriginTypeLbl.Size = new System.Drawing.Size(46, 17);
+            this.OriginTypeLbl.TabIndex = 8;
+            this.OriginTypeLbl.Text = "Origin";
             // 
-            // label4
+            // AliasFirstnameLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(580, 108);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "label4";
+            this.AliasFirstnameLbl.AutoSize = true;
+            this.AliasFirstnameLbl.Location = new System.Drawing.Point(580, 180);
+            this.AliasFirstnameLbl.Name = "AliasFirstnameLbl";
+            this.AliasFirstnameLbl.Size = new System.Drawing.Size(104, 17);
+            this.AliasFirstnameLbl.TabIndex = 9;
+            this.AliasFirstnameLbl.Text = "Alias Firstname";
             // 
-            // label5
+            // AliasLastnameLbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(580, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "label5";
+            this.AliasLastnameLbl.AutoSize = true;
+            this.AliasLastnameLbl.Location = new System.Drawing.Point(580, 251);
+            this.AliasLastnameLbl.Name = "AliasLastnameLbl";
+            this.AliasLastnameLbl.Size = new System.Drawing.Size(104, 17);
+            this.AliasLastnameLbl.TabIndex = 10;
+            this.AliasLastnameLbl.Text = "Alias Lastname";
             // 
-            // label6
+            // AbilityDescriptionInfoLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(593, 251);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "label6";
+            this.AbilityDescriptionInfoLbl.AutoSize = true;
+            this.AbilityDescriptionInfoLbl.Location = new System.Drawing.Point(265, 263);
+            this.AbilityDescriptionInfoLbl.Name = "AbilityDescriptionInfoLbl";
+            this.AbilityDescriptionInfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.AbilityDescriptionInfoLbl.TabIndex = 11;
             // 
-            // label7
+            // RegionNameInfoLbl
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(265, 263);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 17);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "label7";
+            this.RegionNameInfoLbl.AutoSize = true;
+            this.RegionNameInfoLbl.Location = new System.Drawing.Point(265, 337);
+            this.RegionNameInfoLbl.Name = "RegionNameInfoLbl";
+            this.RegionNameInfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.RegionNameInfoLbl.TabIndex = 12;
             // 
-            // label8
+            // AffinityTypeInfoLbl
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(265, 337);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 17);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "label8";
+            this.AffinityTypeInfoLbl.AutoSize = true;
+            this.AffinityTypeInfoLbl.Location = new System.Drawing.Point(251, 409);
+            this.AffinityTypeInfoLbl.Name = "AffinityTypeInfoLbl";
+            this.AffinityTypeInfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.AffinityTypeInfoLbl.TabIndex = 13;
             // 
-            // label9
+            // OriginTypeInfoLbl
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(265, 427);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 17);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "label9";
+            this.OriginTypeInfoLbl.AutoSize = true;
+            this.OriginTypeInfoLbl.Location = new System.Drawing.Point(709, 108);
+            this.OriginTypeInfoLbl.Name = "OriginTypeInfoLbl";
+            this.OriginTypeInfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.OriginTypeInfoLbl.TabIndex = 14;
             // 
-            // label10
+            // AliasFirstnameinfoLbl
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(709, 108);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 17);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "label10";
+            this.AliasFirstnameinfoLbl.AutoSize = true;
+            this.AliasFirstnameinfoLbl.Location = new System.Drawing.Point(709, 180);
+            this.AliasFirstnameinfoLbl.Name = "AliasFirstnameinfoLbl";
+            this.AliasFirstnameinfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.AliasFirstnameinfoLbl.TabIndex = 15;
             // 
-            // label11
+            // AliasLastnameInfoLbl
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(709, 180);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 17);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "label11";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(709, 251);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 17);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "label12";
+            this.AliasLastnameInfoLbl.AutoSize = true;
+            this.AliasLastnameInfoLbl.Location = new System.Drawing.Point(709, 251);
+            this.AliasLastnameInfoLbl.Name = "AliasLastnameInfoLbl";
+            this.AliasLastnameInfoLbl.Size = new System.Drawing.Size(0, 17);
+            this.AliasLastnameInfoLbl.TabIndex = 16;
             // 
             // DetailsTitleLabel
             // 
             this.DetailsTitleLabel.AutoSize = true;
+            this.DetailsTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DetailsTitleLabel.Location = new System.Drawing.Point(76, 22);
             this.DetailsTitleLabel.Name = "DetailsTitleLabel";
-            this.DetailsTitleLabel.Size = new System.Drawing.Size(54, 17);
+            this.DetailsTitleLabel.Size = new System.Drawing.Size(260, 32);
             this.DetailsTitleLabel.TabIndex = 17;
-            this.DetailsTitleLabel.Text = "label13";
+            this.DetailsTitleLabel.Text = "Superhero Details";
+            this.DetailsTitleLabel.UseMnemonic = false;
             // 
             // Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(968, 558);
             this.Controls.Add(this.DetailsTitleLabel);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.AbilityInfoLbl);
+            this.Controls.Add(this.AliasLastnameInfoLbl);
+            this.Controls.Add(this.AliasFirstnameinfoLbl);
+            this.Controls.Add(this.OriginTypeInfoLbl);
+            this.Controls.Add(this.AffinityTypeInfoLbl);
+            this.Controls.Add(this.RegionNameInfoLbl);
+            this.Controls.Add(this.AbilityDescriptionInfoLbl);
+            this.Controls.Add(this.AliasLastnameLbl);
+            this.Controls.Add(this.AliasFirstnameLbl);
+            this.Controls.Add(this.OriginTypeLbl);
+            this.Controls.Add(this.AffinityTypeLbl);
+            this.Controls.Add(this.RegionNameLbl);
+            this.Controls.Add(this.AbilityDescriptionLbl);
             this.Controls.Add(this.AbilityNameInfoLbl);
             this.Controls.Add(this.AbilityNameLbl);
             this.Controls.Add(this.SuperHeroNameInfoLbl);
@@ -245,19 +230,18 @@
         private System.Windows.Forms.Label SuperHeroNameInfoLbl;
         private System.Windows.Forms.Label AbilityNameLbl;
         private System.Windows.Forms.Label AbilityNameInfoLbl;
-        private System.Windows.Forms.Label AbilityInfoLbl;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label AbilityDescriptionLbl;
+        private System.Windows.Forms.Label RegionNameLbl;
+        private System.Windows.Forms.Label AffinityTypeLbl;
+        private System.Windows.Forms.Label OriginTypeLbl;
+        private System.Windows.Forms.Label AliasFirstnameLbl;
+        private System.Windows.Forms.Label AliasLastnameLbl;
+        private System.Windows.Forms.Label AbilityDescriptionInfoLbl;
+        private System.Windows.Forms.Label RegionNameInfoLbl;
+        private System.Windows.Forms.Label AffinityTypeInfoLbl;
+        private System.Windows.Forms.Label OriginTypeInfoLbl;
+        private System.Windows.Forms.Label AliasFirstnameinfoLbl;
+        private System.Windows.Forms.Label AliasLastnameInfoLbl;
         private System.Windows.Forms.Label DetailsTitleLabel;
     }
 }
