@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Super_CRUD_App.Windows.DetailsWindow
 {
-    public partial class DetailsForm : Form
+    public partial class Details : Form
     {
-        public DetailsForm()
+        public Details()
         {
             InitializeComponent();
         }
