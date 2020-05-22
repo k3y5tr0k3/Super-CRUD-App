@@ -1,4 +1,4 @@
-﻿using Super_CRUD_App.DataModels;
+﻿using Super_CRUD_App.DataModels.Entities;
 using Super_CRUD_App.Windows.DetailsWindow;
 using SuperLibrary.ServiceManagers;
 using System;
@@ -20,7 +20,6 @@ namespace Super_CRUD_App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Details(GetSuperhero().GetAwaiter().GetResult()));
-
         }
 
         public async static Task<Superhero> GetSuperhero()

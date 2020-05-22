@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SuperRegistryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SuperRegistryModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ability">
           <Key>
             <PropertyRef Name="AbilityID" />
@@ -130,7 +130,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
         <!--Errors Found During Generation:
 error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a relationship, but cannot be found.
         <Association Name="FK_SuperheroRegion_Superhero_ID" />-->
-        <EntityContainer Name="SuperRegistryModelStoreContainer">
+        <EntityContainer Name="SuperRegistryModelsStoreContainer">
           <EntitySet Name="Ability" EntityType="Self.Ability" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Affinity" EntityType="Self.Affinity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alias" EntityType="Self.Alias" Schema="dbo" store:Type="Tables" />
@@ -155,7 +155,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SuperRegistryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SuperRegistryModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Ability">
           <Key>
             <PropertyRef Name="AbilityID" />
@@ -277,9 +277,9 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SuperRegistryModelStoreContainer" CdmEntityContainer="SuperRegistryEntities">
+        <EntityContainerMapping StorageEntityContainer="SuperRegistryModelsStoreContainer" CdmEntityContainer="SuperRegistryEntities">
           <EntitySetMapping Name="Abilities">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Ability">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Ability">
               <MappingFragment StoreEntitySet="Ability">
                 <ScalarProperty Name="AbilityID" ColumnName="AbilityID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -288,7 +288,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Affinities">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Affinity">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Affinity">
               <MappingFragment StoreEntitySet="Affinity">
                 <ScalarProperty Name="AffinityID" ColumnName="AffinityID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -296,7 +296,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Aliases">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Alias">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Alias">
               <MappingFragment StoreEntitySet="Alias">
                 <ScalarProperty Name="AliasID" ColumnName="AliasID" />
                 <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
@@ -306,7 +306,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Backgrounds">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Background">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Background">
               <MappingFragment StoreEntitySet="Background">
                 <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
                 <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
@@ -314,7 +314,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Origins">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Origin">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Origin">
               <MappingFragment StoreEntitySet="Origin">
                 <ScalarProperty Name="OriginID" ColumnName="OriginID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -322,7 +322,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Regions">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Region">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Region">
               <MappingFragment StoreEntitySet="Region">
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -330,7 +330,7 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Superheroes">
-            <EntityTypeMapping TypeName="SuperRegistryModel.Superhero">
+            <EntityTypeMapping TypeName="SuperRegistryModels.Superhero">
               <MappingFragment StoreEntitySet="Superhero">
                 <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
                 <ScalarProperty Name="AffinityID" ColumnName="AffinityID" />

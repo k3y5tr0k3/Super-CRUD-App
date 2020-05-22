@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,45 +57,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModels\Ability.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Ability.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Affinity.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Affinity.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Alias.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Alias.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Background.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Background.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Origin.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Origin.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Region.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Region.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Superhero.cs">
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+    <Compile Include="Entities\Superhero.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\SuperheroModel.Context.cs">
+    <Compile Include="Entities\SuperheroRegistry.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SuperheroModel.Context.tt</DependentUpon>
+      <DependentUpon>SuperheroRegistry.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\SuperheroModel.cs">
+    <Compile Include="Entities\SuperheroRegistry.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SuperheroModel.tt</DependentUpon>
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\SuperheroModel.Designer.cs">
+    <Compile Include="Entities\SuperheroRegistry.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SuperheroModel.edmx</DependentUpon>
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PageRequestModel.cs" />
+    <Compile Include="Models\PageResultModel.cs" />
+    <Compile Include="Models\SuperheroModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceManagers\SuperheroServiceManager.cs" />
+    <Compile Include="Windows\AddUpdateWindow\AddUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\AddUpdateWindow\AddUpdateForm.Designer.cs">
+      <DependentUpon>AddUpdateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DetailsWindow\Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,15 +120,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Windows\AddUpdateWindow\AddUpdateForm.resx">
+      <DependentUpon>AddUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\DetailsWindow\Details.resx">
       <DependentUpon>Details.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="DataModels\SuperheroModel.edmx">
+    <EntityDeploy Include="Entities\SuperheroRegistry.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SuperheroModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>SuperheroRegistry.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataModels\SuperheroModel.edmx.diagram">
-      <DependentUpon>SuperheroModel.edmx</DependentUpon>
+    <None Include="Entities\SuperheroRegistry.edmx.diagram">
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -133,19 +148,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModels\SuperheroModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SuperheroModel.Context.cs</LastGenOutput>
-      <DependentUpon>SuperheroModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataModels\SuperheroModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SuperheroModel.edmx</DependentUpon>
-      <LastGenOutput>SuperheroModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Entities\SuperheroRegistry.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
+      <LastGenOutput>SuperheroRegistry.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\SuperheroRegistry.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
+      <LastGenOutput>SuperheroRegistry.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

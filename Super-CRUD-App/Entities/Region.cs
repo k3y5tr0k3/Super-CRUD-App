@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.DataModels
+namespace Super_CRUD_App.Entities
 {
     using System;
     using System.Collections.Generic;

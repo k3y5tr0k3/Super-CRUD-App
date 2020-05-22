@@ -7,18 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.DataModels
+namespace Super_CRUD_App.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Alias
+    public partial class Origin
     {
-        public int AliasID { get; set; }
-        public Nullable<int> BackgroundID { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-    
-        public virtual Background Background { get; set; }
+        public int OriginID { get; set; }
+        public string Type { get; set; }
     }
 }
