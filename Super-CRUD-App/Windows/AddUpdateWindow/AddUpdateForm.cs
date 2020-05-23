@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Super_CRUD_App
+namespace Super_CRUD_App.Windows.AddUpdateWindow
 {
-    public partial class Form1 : Form
+    public partial class AddUpdateForm : Form
     {
-        public Form1()
+        public AddUpdateForm()
         {
             InitializeComponent();
         }
+
     }
 }

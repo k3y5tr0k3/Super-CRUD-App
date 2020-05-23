@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SuperRegistryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ability">
+          <Key>
+            <PropertyRef Name="AbilityID" />
+          </Key>
+          <Property Name="AbilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Affinity">
+          <Key>
+            <PropertyRef Name="AffinityID" />
+          </Key>
+          <Property Name="AffinityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="Alias">
+          <Key>
+            <PropertyRef Name="AliasID" />
+          </Key>
+          <Property Name="AliasID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BackgroundID" Type="int" />
+          <Property Name="Firstname" Type="varchar" MaxLength="120" />
+          <Property Name="Lastname" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="Background">
+          <Key>
+            <PropertyRef Name="BackgroundID" />
+          </Key>
+          <Property Name="BackgroundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuperheroID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SuperRegistry.dbo.BackgroundOrigin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BackgroundOrigin">
+          <Property Name="BackgroundID" Type="int" />
+          <Property Name="OriginID" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Origin">
+          <Key>
+            <PropertyRef Name="OriginID" />
+          </Key>
+          <Property Name="OriginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Superhero">
+          <Key>
+            <PropertyRef Name="SuperheroID" />
+          </Key>
+          <Property Name="SuperheroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AffinityID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="120" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SuperRegistry.dbo.SuperheroAbility' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SuperheroAbility">
+          <Property Name="SuperheroID" Type="int" />
+          <Property Name="AbilityID" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SuperRegistry.dbo.SuperheroRegion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SuperheroRegion">
+          <Property Name="SuperheroID" Type="int" />
+          <Property Name="RegionID" Type="int" />
+        </EntityType>-->
+        <Association Name="FK_Alias_Background_ID">
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Alias" Type="Self.Alias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Background">
+              <PropertyRef Name="BackgroundID" />
+            </Principal>
+            <Dependent Role="Alias">
+              <PropertyRef Name="BackgroundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Background_Superhero_ID">
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1" />
+          <End Role="Background" Type="Self.Background" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Superhero">
+              <PropertyRef Name="SuperheroID" />
+            </Principal>
+            <Dependent Role="Background">
+              <PropertyRef Name="SuperheroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.BackgroundOrigin' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_BackgroundOrigin_Background_ID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.BackgroundOrigin' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_BackgroundOrigin_Origin_ID" />-->
+        <Association Name="FK_Superhero_Affinity_ID">
+          <End Role="Affinity" Type="Self.Affinity" Multiplicity="0..1" />
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Affinity">
+              <PropertyRef Name="AffinityID" />
+            </Principal>
+            <Dependent Role="Superhero">
+              <PropertyRef Name="AffinityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.SuperheroAbility' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_SuperheroAbility_Ability_ID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.SuperheroAbility' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_SuperheroAbility_Superhero_ID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_SuperheroRegion_Region_ID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_SuperheroRegion_Superhero_ID" />-->
+        <Function Name="sp_SelectPageOfSuperheros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageNo" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="filter" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="SuperRegistryModelStoreContainer">
+          <EntitySet Name="Ability" EntityType="Self.Ability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Affinity" EntityType="Self.Affinity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alias" EntityType="Self.Alias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Background" EntityType="Self.Background" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Origin" EntityType="Self.Origin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Superhero" EntityType="Self.Superhero" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alias_Background_ID" Association="Self.FK_Alias_Background_ID">
+            <End Role="Background" EntitySet="Background" />
+            <End Role="Alias" EntitySet="Alias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Background_Superhero_ID" Association="Self.FK_Background_Superhero_ID">
+            <End Role="Superhero" EntitySet="Superhero" />
+            <End Role="Background" EntitySet="Background" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Superhero_Affinity_ID" Association="Self.FK_Superhero_Affinity_ID">
+            <End Role="Affinity" EntitySet="Affinity" />
+            <End Role="Superhero" EntitySet="Superhero" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SuperRegistryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ability">
+          <Key>
+            <PropertyRef Name="AbilityID" />
+          </Key>
+          <Property Name="AbilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Affinity">
+          <Key>
+            <PropertyRef Name="AffinityID" />
+          </Key>
+          <Property Name="AffinityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Superheroes" Relationship="Self.FK_Superhero_Affinity_ID" FromRole="Affinity" ToRole="Superhero" />
+        </EntityType>
+        <EntityType Name="Alias">
+          <Key>
+            <PropertyRef Name="AliasID" />
+          </Key>
+          <Property Name="AliasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BackgroundID" Type="Int32" />
+          <Property Name="Firstname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Background" Relationship="Self.FK_Alias_Background_ID" FromRole="Alias" ToRole="Background" />
+        </EntityType>
+        <EntityType Name="Background">
+          <Key>
+            <PropertyRef Name="BackgroundID" />
+          </Key>
+          <Property Name="BackgroundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuperheroID" Type="Int32" />
+          <NavigationProperty Name="Aliases" Relationship="Self.FK_Alias_Background_ID" FromRole="Background" ToRole="Alias" />
+          <NavigationProperty Name="Superhero" Relationship="Self.FK_Background_Superhero_ID" FromRole="Background" ToRole="Superhero" />
+        </EntityType>
+        <EntityType Name="Origin">
+          <Key>
+            <PropertyRef Name="OriginID" />
+          </Key>
+          <Property Name="OriginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Superhero">
+          <Key>
+            <PropertyRef Name="SuperheroID" />
+          </Key>
+          <Property Name="SuperheroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AffinityID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Affinity" Relationship="Self.FK_Superhero_Affinity_ID" FromRole="Superhero" ToRole="Affinity" />
+          <NavigationProperty Name="Backgrounds" Relationship="Self.FK_Background_Superhero_ID" FromRole="Superhero" ToRole="Background" />
+        </EntityType>
+        <Association Name="FK_Superhero_Affinity_ID">
+          <End Role="Affinity" Type="Self.Affinity" Multiplicity="0..1" />
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Affinity">
+              <PropertyRef Name="AffinityID" />
+            </Principal>
+            <Dependent Role="Superhero">
+              <PropertyRef Name="AffinityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alias_Background_ID">
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Alias" Type="Self.Alias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Background">
+              <PropertyRef Name="BackgroundID" />
+            </Principal>
+            <Dependent Role="Alias">
+              <PropertyRef Name="BackgroundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Background_Superhero_ID">
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1" />
+          <End Role="Background" Type="Self.Background" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Superhero">
+              <PropertyRef Name="SuperheroID" />
+            </Principal>
+            <Dependent Role="Background">
+              <PropertyRef Name="SuperheroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuperRegistryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abilities" EntityType="Self.Ability" />
+          <EntitySet Name="Affinities" EntityType="Self.Affinity" />
+          <EntitySet Name="Aliases" EntityType="Self.Alias" />
+          <EntitySet Name="Backgrounds" EntityType="Self.Background" />
+          <EntitySet Name="Origins" EntityType="Self.Origin" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Superheroes" EntityType="Self.Superhero" />
+          <AssociationSet Name="FK_Superhero_Affinity_ID" Association="Self.FK_Superhero_Affinity_ID">
+            <End Role="Affinity" EntitySet="Affinities" />
+            <End Role="Superhero" EntitySet="Superheroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alias_Background_ID" Association="Self.FK_Alias_Background_ID">
+            <End Role="Background" EntitySet="Backgrounds" />
+            <End Role="Alias" EntitySet="Aliases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Background_Superhero_ID" Association="Self.FK_Background_Superhero_ID">
+            <End Role="Superhero" EntitySet="Superheroes" />
+            <End Role="Background" EntitySet="Backgrounds" />
+          </AssociationSet>
+          <FunctionImport Name="sp_SelectPageOfSuperheros" ReturnType="Collection(SuperRegistryModel.sp_SelectPageOfSuperheros_Result)">
+            <Parameter Name="pageNo" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="filter" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_SelectPageOfSuperheros_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int32" Name="SuperheroID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="120" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SuperRegistryModelStoreContainer" CdmEntityContainer="SuperRegistryEntities">
+          <EntitySetMapping Name="Abilities">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Ability">
+              <MappingFragment StoreEntitySet="Ability">
+                <ScalarProperty Name="AbilityID" ColumnName="AbilityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Affinities">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Affinity">
+              <MappingFragment StoreEntitySet="Affinity">
+                <ScalarProperty Name="AffinityID" ColumnName="AffinityID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aliases">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Alias">
+              <MappingFragment StoreEntitySet="Alias">
+                <ScalarProperty Name="AliasID" ColumnName="AliasID" />
+                <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Backgrounds">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Background">
+              <MappingFragment StoreEntitySet="Background">
+                <ScalarProperty Name="BackgroundID" ColumnName="BackgroundID" />
+                <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Origins">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Origin">
+              <MappingFragment StoreEntitySet="Origin">
+                <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Superheroes">
+            <EntityTypeMapping TypeName="SuperRegistryModel.Superhero">
+              <MappingFragment StoreEntitySet="Superhero">
+                <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
+                <ScalarProperty Name="AffinityID" ColumnName="AffinityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectPageOfSuperheros" FunctionName="SuperRegistryModel.Store.sp_SelectPageOfSuperheros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SuperRegistryModel.sp_SelectPageOfSuperheros_Result">
+                <ScalarProperty Name="RowNum" ColumnName="RowNum" />
+                <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
