@@ -75,6 +75,9 @@
     <Compile Include="Entities\Region.cs">
       <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\sp_SelectPageOfSuperheros_Result.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Superhero.cs">
       <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
@@ -93,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ModelFactories\SuperheroModelFatory.cs" />
     <Compile Include="Models\PageRequestModel.cs" />
     <Compile Include="Models\PageResultModel.cs" />
     <Compile Include="Models\SuperheroModel.cs" />
@@ -150,7 +154,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\SuperheroRegistry.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -163,5 +166,6 @@
       <LastGenOutput>SuperheroRegistry.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
