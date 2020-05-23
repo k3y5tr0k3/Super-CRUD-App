@@ -13,8 +13,8 @@ namespace Super_CRUD_App.Models
     public class PageResultModel
     {
         public int PageNo { get; set; }
-        public int TotalSuperheros { get; set; }
-        public int NoOfPages { get; set;  }
+        public int TotalRecords { get; set; }
+        public int PageSize { get; set;  }
         public ICollection<Superhero> Superheros { get; set; }
     }
 }

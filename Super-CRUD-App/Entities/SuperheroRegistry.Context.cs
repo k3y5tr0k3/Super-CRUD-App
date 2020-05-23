@@ -12,7 +12,10 @@ namespace Super_CRUD_App.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
+    using System.Collections.Generic;
+
     public partial class SuperRegistryEntities : DbContext
     {
         public SuperRegistryEntities()
@@ -32,5 +35,22 @@ namespace Super_CRUD_App.Entities
         public virtual DbSet<Origin> Origins { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Superhero> Superheroes { get; set; }
+    
+        public virtual ObjectResult<Superhero[]> sp_SelectPageOfSuperheros(Nullable<int> pageNo, Nullable<int> pageSize, string filter)
+        {
+            var pageNoParameter = pageNo.HasValue ?
+                new ObjectParameter("pageNo", pageNo) :
+                new ObjectParameter("pageNo", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var filterParameter = filter != null ?
+                new ObjectParameter("filter", filter) :
+                new ObjectParameter("filter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Superhero[]>("sp_SelectPageOfSuperheros", pageNoParameter, pageSizeParameter, filterParameter);
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Super_CRUD_App.Entities;
+using Super_CRUD_App.ModelFactories;
 using Super_CRUD_App.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +16,7 @@ namespace SuperLibrary.ServiceManagers
         #region Singleton Creation
 
         /// <summary>
-        /// Holds an instance of the current instance of SuperheroServiceManager
+        /// Holds a reference to the current instance of SuperheroServiceManager
         /// </summary>
         private static SuperheroServiceManager instance;
 
@@ -39,7 +41,12 @@ namespace SuperLibrary.ServiceManagers
         #endregion
 
         #region Create 
-        // insert statement
+        
+        public async Task CreateSuperheroAsync()
+        {
+
+        }
+
         #endregion
 
         #region Read
@@ -51,42 +58,28 @@ namespace SuperLibrary.ServiceManagers
         /// <param name="id">Superhero ID</param>
         /// 
         /// <returns><![CDATA[SuperheroModel]]></returns>
-        public async Task<Superhero> GetSuperheroAsync(int id)
+        public async Task<SuperheroModel> GetSuperheroAsync(int id)
         {
-            using (SuperRegistryEntities db = new SuperRegistryEntities())
-            {
-                SuperheroModel hero = from superhero in db.Superheroes
-                                 join abilities in db.Abilities on superhero.SuperheroID equals abilities.
-                                 join affinity in db.Affinity on e.TID equals t.TID
-                                 where e.OwnerID == user.UID
-                                 select new
-                                 {
-                                     UID = e.OwnerID,
-                                     TID = e.TID,
-                                     Title = t.Title,
-                                     EID = e.EID
-                                 };
-
-
-
-                
-                return hero;
-            }
+            // TODO:
+            return 
         }
 
         /// <summary>
-        /// Select a subset of rows from the Superhero table
+        /// Call a sproc to paginate the superhero table
         /// </summary>
         /// 
         /// <param name="pageRequest"></param>
-        /// <returns></returns>
-        public async Task<PageResultModel> GetPageResultAsync(PageRequestModel pageRequest)
+        /// <returns><![CDATA[PageResultModel]]></returns>
+        public async Task<PageResultModel> GetPageResultAsync(PageRequestModel req)
         {
             using (SuperRegistryEntities db = new SuperRegistryEntities())
             {
-                var totalSuperheros = await db.Superheroes.CountAsync();
-                var superheros = query.Page(pageRequest).ToListAsync().Result.Select(e => ModelFactory.CreateListModel(e));
-                return await Task;
+                var totalRecords = await db.Superheroes.CountAsync();
+                var superheros = db.sp_SelectPageOfSuperheros(req.PageNo, req.PageSize, req.Filter);
+
+                PageResultModel result = SuperheroModelFatory.CreatePageResult(superheros, req, totalRecords);
+
+                return result;
             }
         }
         
