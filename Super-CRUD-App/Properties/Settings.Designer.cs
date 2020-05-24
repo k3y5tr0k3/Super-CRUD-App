@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.Properties
+namespace SuperCRUDLib.Properties
 {
 
 

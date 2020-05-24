@@ -1,4 +1,4 @@
-﻿namespace Super_CRUD_App.Windows.DetailsWindow
+﻿namespace SuperCRUDLib.Windows.DetailsWindow
 {
     partial class Details
     {

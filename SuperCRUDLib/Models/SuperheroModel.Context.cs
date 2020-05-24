@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.DataModels
+namespace SuperCRUDLib.DataModels
 {
+    using SuperCRUDLib.Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;

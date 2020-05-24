@@ -1,11 +1,7 @@
-﻿using Super_CRUD_App.Entities;
-using System;
+﻿using SuperCRUDLib.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Super_CRUD_App.Models
+namespace SuperCRUDLib.Models
 {
     public class SuperheroModel
     {

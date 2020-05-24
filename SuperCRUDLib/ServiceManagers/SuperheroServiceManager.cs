@@ -1,6 +1,6 @@
-﻿using Super_CRUD_App.Entities;
-using Super_CRUD_App.ModelFactories;
-using Super_CRUD_App.Models;
+﻿using SuperCRUDLib.Entities;
+using SuperCRUDLib.ModelFactories;
+using SuperCRUDLib.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace SuperLibrary.ServiceManagers
         /// Static method that returns a singleton instance of SuperheroServiceManager
         /// </summary>
         /// <returns>An instance of SuperheroServiceManger</returns>
-        public static SuperheroServiceManager getInstance()
+        public static SuperheroServiceManager GetInstance()
         {
             if (instance is null)
             {
@@ -42,10 +42,10 @@ namespace SuperLibrary.ServiceManagers
 
         #region Create 
         
-        public async Task CreateSuperheroAsync()
+        /*public async Task CreateSuperheroAsync()
         {
-
-        }
+            return new Task;
+        }*/
 
         #endregion
 
@@ -58,11 +58,11 @@ namespace SuperLibrary.ServiceManagers
         /// <param name="id">Superhero ID</param>
         /// 
         /// <returns><![CDATA[SuperheroModel]]></returns>
-        public async Task<SuperheroModel> GetSuperheroAsync(int id)
+        /*public async Task<SuperheroModel> GetSuperheroAsync(int id)
         {
             // TODO:
             return 
-        }
+        }*/
 
         /// <summary>
         /// Call a sproc to paginate the superhero table
@@ -75,9 +75,17 @@ namespace SuperLibrary.ServiceManagers
             using (SuperRegistryEntities db = new SuperRegistryEntities())
             {
                 var totalRecords = await db.Superheroes.CountAsync();
-                var superheros = db.sp_SelectPageOfSuperheros(req.PageNo, req.PageSize, req.Filter);
+                var sprocResult = db.sp_SelectPageOfSuperheros(req.PageNo, req.PageSize, req.Filter);
 
-                PageResultModel result = SuperheroModelFatory.CreatePageResult(superheros, req, totalRecords);
+                List<SuperheroListModel> superheroList = sprocResult.Select(x => new SuperheroListModel
+                {
+                    RowNum = (int)x.RowNum,
+                    SuperheroID = x.SuperheroID,
+                    Name = x.Name
+                }
+                ).ToList();
+
+                PageResultModel result = SuperheroModelFatory.CreatePageResult(superheroList, req, totalRecords);
 
                 return result;
             }

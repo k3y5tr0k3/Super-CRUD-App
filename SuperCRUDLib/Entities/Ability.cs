@@ -7,14 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.Entities
+namespace SuperCRUDLib.Entities
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_SelectPageOfSuperheros_Result
+    public partial class Ability
     {
-        public Nullable<long> RowNum { get; set; }
-        public int SuperheroID { get; set; }
+        public int AbilityID { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

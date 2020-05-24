@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.Entities
+namespace SuperCRUDLib.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Origin
+    public partial class Region
     {
-        public int OriginID { get; set; }
-        public string Type { get; set; }
+        public int RegionID { get; set; }
+        public string Name { get; set; }
     }
 }

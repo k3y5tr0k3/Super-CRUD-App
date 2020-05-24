@@ -1,4 +1,4 @@
-﻿namespace Super_CRUD_App.Windows.AddUpdateWindow
+﻿namespace SuperCRUDLib.Windows.AddUpdateWindow
 {
     partial class AddUpdateForm
     {

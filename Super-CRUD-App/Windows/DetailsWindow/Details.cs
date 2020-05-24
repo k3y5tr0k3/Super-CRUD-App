@@ -1,15 +1,7 @@
-﻿using Super_CRUD_App.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SuperCRUDLib.Models;
 using System.Windows.Forms;
 
-namespace Super_CRUD_App.Windows.DetailsWindow
+namespace SuperCRUDLib.Windows.DetailsWindow
 {
     public partial class Details : Form
     {
@@ -17,18 +9,22 @@ namespace Super_CRUD_App.Windows.DetailsWindow
         /// Creates an instance of
         /// </summary>
         /// <param name="hero"></param>
-        public Details(Superhero hero)
+        public Details(int superheroID)
         {
             InitializeComponent();
-            DisplayHero(hero);
+
+            DisplayHero(superheroID);
         }
 
-        private void DisplayHero(Superhero hero)
+        /// <summary>
+        /// Get SuperheroModel from the DB and 
+        /// add the superhero's details to form
+        /// </summary>
+        /// <param name="hero"><![CDATA[SuperheroModel]]></param>
+        private void DisplayHero(int SuperheroID)
         {
-            SuperHeroNameInfoLbl.Text = hero.Name;
-            AffinityTypeInfoLbl.Text = hero.Affinity.Type;
-            hero.
-            //
+            
         }
+
     }
 }

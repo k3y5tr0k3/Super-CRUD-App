@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.Entities
+namespace SuperCRUDLib.Entities
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using System.Linq;
+    using SuperCRUDLib.Entities;
     using System.Collections.Generic;
 
     public partial class SuperRegistryEntities : DbContext
@@ -36,7 +36,7 @@ namespace Super_CRUD_App.Entities
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Superhero> Superheroes { get; set; }
     
-        public virtual ObjectResult<Superhero[]> sp_SelectPageOfSuperheros(Nullable<int> pageNo, Nullable<int> pageSize, string filter)
+        public virtual ObjectResult<sp_SelectPageOfSuperheros_Result> sp_SelectPageOfSuperheros(Nullable<int> pageNo, Nullable<int> pageSize, string filter)
         {
             var pageNoParameter = pageNo.HasValue ?
                 new ObjectParameter("pageNo", pageNo) :
@@ -50,7 +50,7 @@ namespace Super_CRUD_App.Entities
                 new ObjectParameter("filter", filter) :
                 new ObjectParameter("filter", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Superhero[]>("sp_SelectPageOfSuperheros", pageNoParameter, pageSizeParameter, filterParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectPageOfSuperheros_Result>("sp_SelectPageOfSuperheros", pageNoParameter, pageSizeParameter, filterParameter);
         }
     }
 }

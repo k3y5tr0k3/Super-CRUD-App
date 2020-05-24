@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Super_CRUD_App.Entities
+namespace SuperCRUDLib.Entities
 {
     using System;
     using System.Collections.Generic;
