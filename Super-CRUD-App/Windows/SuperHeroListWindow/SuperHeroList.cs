@@ -1,4 +1,5 @@
-﻿using SuperCRUDLib.Models;
+﻿using SuperCRUDLib.Entities;
+using SuperCRUDLib.Models;
 using SuperCRUDLib.Windows.AddUpdateWindow;
 using SuperCRUDLib.Windows.DetailsWindow;
 using SuperLibrary.ServiceManagers;
@@ -143,11 +144,19 @@ namespace SuperCRUDLib.Windows.SuperHeroListWindow
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteButton_Clicked(object sender, EventArgs e)
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
-            if (CurrentSelection() != null)
+            foreach (DataGridViewRow row in SuperheroListDataGridView.SelectedRows)
             {
-                // TODO:
+                SuperheroListModel hero = row.DataBoundItem as SuperheroListModel;
+
+                if (hero != null)
+                {
+                    serviceManager.TryRemoveAsync(hero.SuperheroID);
+                }
+
+                await GetPage();
+                RefreshFormData();
             }
         }
 
@@ -161,10 +170,15 @@ namespace SuperCRUDLib.Windows.SuperHeroListWindow
         {
             if (currentWindow is null)
             {
-                if (CurrentSelection() != null)
+                if (SuperheroListDataGridView.SelectedRows.Count == 1)
                 {
-                    currentWindow = new Details((int) CurrentSelection());
-                    currentWindow.Show();
+                    foreach (DataGridViewRow row in SuperheroListDataGridView.SelectedRows)
+                    {
+                        SuperheroListModel superhero = row.DataBoundItem as SuperheroListModel;
+                        currentWindow = new Details(superhero.SuperheroID);
+                        currentWindow.Show();
+                    }
+                    
                 }
             }
             else

@@ -65,16 +65,33 @@ namespace SuperLibrary.ServiceManagers
         }
 
         /// <summary>
-        /// Call a sproc to paginate the superhero table
+        /// Asyncronous wrapper function for GetPageResult
         /// </summary>
         /// 
-        /// <param name="pageRequest"></param>
-        /// <returns><![CDATA[PageResultModel]]></returns>
+        /// <param name="req"></param>
+        /// <returns></returns>
         public async Task<PageResultModel> GetPageResultAsync(PageRequestModel req)
         {
             using (SuperRegistryEntities db = new SuperRegistryEntities())
             {
-                var totalRecords = await db.Superheroes.CountAsync();
+                int totalRecords = await db.Superheroes.CountAsync();
+
+                return await Task.Factory.StartNew(() => GetPageResult(req, totalRecords));
+            }
+                
+        }
+
+        /// <summary>
+        /// Call a sproc to paginate the superhero table
+        /// </summary>
+        /// 
+        /// <param name="req"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns><![CDATA[PageResultModel]]></returns>
+        public PageResultModel GetPageResult(PageRequestModel req, int totalRecords)
+        {
+            using (SuperRegistryEntities db = new SuperRegistryEntities())
+            {
                 var sprocResult = db.sp_SelectPageOfSuperheros(req.PageNo, req.PageSize, req.Filter);
 
                 return SuperheroModelFatory.CreatePageResult(sprocResult, req, totalRecords);
@@ -98,8 +115,7 @@ namespace SuperLibrary.ServiceManagers
         {
             using (SuperRegistryEntities db = new SuperRegistryEntities())
             {
-                Superhero hero = await db.Superheroes.Where(x => x.SuperheroID == id).FirstOrDefaultAsync();
-                db.Superheroes.Remove(hero);
+                // call delete sproc
             }
         }
 
