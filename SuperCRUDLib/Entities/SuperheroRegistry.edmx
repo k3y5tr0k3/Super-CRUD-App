@@ -77,7 +77,9 @@ warning 6013: The table/view 'SuperRegistry.dbo.SuperheroRegion' does not have a
           <Property Name="RegionID" Type="int" />
         </EntityType>-->
         <Association Name="FK_Alias_Background_ID">
-          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Alias" Type="Self.Alias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Background">
@@ -89,7 +91,9 @@ warning 6013: The table/view 'SuperRegistry.dbo.SuperheroRegion' does not have a
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Background_Superhero_ID">
-          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1" />
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Background" Type="Self.Background" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Superhero">
@@ -130,10 +134,16 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
         <!--Errors Found During Generation:
 error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a relationship, but cannot be found.
         <Association Name="FK_SuperheroRegion_Superhero_ID" />-->
+        <Function Name="sp_DeleteSuperheroBySuperheroID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_SelectPageOfSuperheros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageNo" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="filter" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SelectSuperheroDetailsBySuperheroID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="SuperRegistryModelStoreContainer">
           <EntitySet Name="Ability" EntityType="Self.Ability" Schema="dbo" store:Type="Tables" />
@@ -233,7 +243,9 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Alias_Background_ID">
-          <End Role="Background" Type="Self.Background" Multiplicity="0..1" />
+          <End Role="Background" Type="Self.Background" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Alias" Type="Self.Alias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Background">
@@ -245,7 +257,9 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Background_Superhero_ID">
-          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1" />
+          <End Role="Superhero" Type="Self.Superhero" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Background" Type="Self.Background" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Superhero">
@@ -276,16 +290,33 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
             <End Role="Superhero" EntitySet="Superheroes" />
             <End Role="Background" EntitySet="Backgrounds" />
           </AssociationSet>
+          <FunctionImport Name="sp_DeleteSuperheroBySuperheroID">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_SelectPageOfSuperheros" ReturnType="Collection(SuperRegistryModel.sp_SelectPageOfSuperheros_Result)">
             <Parameter Name="pageNo" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="filter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SelectSuperheroDetailsBySuperheroID" ReturnType="Collection(SuperRegistryModel.sp_SelectSuperheroDetailsBySuperheroID_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_SelectPageOfSuperheros_Result">
           <Property Type="Int64" Name="RowNum" Nullable="true" />
           <Property Type="Int32" Name="SuperheroID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="120" />
+        </ComplexType>
+        <ComplexType Name="sp_SelectSuperheroDetailsBySuperheroID_Result">
+          <Property Type="Int32" Name="SuperheroID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="Affinity" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Origin" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Region_Name" Nullable="true" />
+          <Property Type="String" Name="Ability_Name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Ability_Description" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="120" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -353,12 +384,28 @@ error 6004: The table 'SuperRegistry.dbo.SuperheroRegion' is referenced by a rel
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_DeleteSuperheroBySuperheroID" FunctionName="SuperRegistryModel.Store.sp_DeleteSuperheroBySuperheroID" />
           <FunctionImportMapping FunctionImportName="sp_SelectPageOfSuperheros" FunctionName="SuperRegistryModel.Store.sp_SelectPageOfSuperheros">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SuperRegistryModel.sp_SelectPageOfSuperheros_Result">
                 <ScalarProperty Name="RowNum" ColumnName="RowNum" />
                 <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SelectSuperheroDetailsBySuperheroID" FunctionName="SuperRegistryModel.Store.sp_SelectSuperheroDetailsBySuperheroID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SuperRegistryModel.sp_SelectSuperheroDetailsBySuperheroID_Result">
+                <ScalarProperty Name="SuperheroID" ColumnName="SuperheroID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Affinity" ColumnName="Affinity" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Region_Name" ColumnName="Region_Name" />
+                <ScalarProperty Name="Ability_Name" ColumnName="Ability_Name" />
+                <ScalarProperty Name="Ability_Description" ColumnName="Ability_Description" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

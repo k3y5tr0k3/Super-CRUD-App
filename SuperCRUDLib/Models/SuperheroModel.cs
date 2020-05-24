@@ -5,12 +5,14 @@ namespace SuperCRUDLib.Models
 {
     public class SuperheroModel
     {
+        public int SuperheroID { get; set; }
         public string Name { get; set; }
-        public ICollection<Ability> Abilities { get; set; }
-        public Affinity Affinity { get; set; }
-        public Alias Alias { get; set; }
-        public Background Background { get; set; }
-        public Origin Origin { get; set; }
-        public Region Region { get; set; }
+        public string AbilityName { get; set; }
+        public string AbilityDescription { get; set; }
+        public string Affinity { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Origin { get; set; }
+        public string Region { get; set; }
     }
 }

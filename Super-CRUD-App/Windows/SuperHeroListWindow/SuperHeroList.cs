@@ -22,7 +22,7 @@ namespace SuperCRUDLib.Windows.SuperHeroListWindow
         {
             InitializeComponent();
 
-            serviceManager = SuperheroServiceManager.GetInstance();
+            serviceManager = new SuperheroServiceManager();
 
             InitializeDataGridView();
         }
@@ -58,9 +58,10 @@ namespace SuperCRUDLib.Windows.SuperHeroListWindow
             SuperheroListDataGridView.Update();
             SuperheroListDataGridView.Refresh();
 
-            SuperheroListDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            SuperheroListDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            SuperheroListDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SuperheroListDataGridView.Columns[0].AutoSizeMode   = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            SuperheroListDataGridView.Columns[0].Name           = "";
+            SuperheroListDataGridView.Columns[1].Visible        = false;
+            SuperheroListDataGridView.Columns[2].AutoSizeMode   = DataGridViewAutoSizeColumnMode.Fill;
         } 
 
         #endregion

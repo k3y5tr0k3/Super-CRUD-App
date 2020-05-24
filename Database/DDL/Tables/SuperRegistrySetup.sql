@@ -24,7 +24,8 @@ CREATE TABLE [SuperheroAbility](
 	CONSTRAINT FK_SuperheroAbility_Superhero_ID 
 	FOREIGN KEY(SuperheroID) REFERENCES [Superhero](SuperheroID),
 	CONSTRAINT FK_SuperheroAbility_Ability_ID
-	FOREIGN KEY(AbilityID) REFERENCES [Ability](AbilityID)
+	FOREIGN KEY(AbilityID) REFERENCES [Ability](AbilityID),
+	
 );
 CREATE TABLE [Region](
 	[RegionID] int PRIMARY KEY IDENTITY(1, 1),

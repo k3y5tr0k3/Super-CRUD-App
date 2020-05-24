@@ -13,9 +13,8 @@ namespace SuperCRUDLib.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using SuperCRUDLib.Entities;
-    using System.Collections.Generic;
-
+    using System.Linq;
+    
     public partial class SuperRegistryEntities : DbContext
     {
         public SuperRegistryEntities()
@@ -36,6 +35,15 @@ namespace SuperCRUDLib.Entities
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Superhero> Superheroes { get; set; }
     
+        public virtual int sp_DeleteSuperheroBySuperheroID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteSuperheroBySuperheroID", idParameter);
+        }
+    
         public virtual ObjectResult<sp_SelectPageOfSuperheros_Result> sp_SelectPageOfSuperheros(Nullable<int> pageNo, Nullable<int> pageSize, string filter)
         {
             var pageNoParameter = pageNo.HasValue ?
@@ -51,6 +59,15 @@ namespace SuperCRUDLib.Entities
                 new ObjectParameter("filter", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectPageOfSuperheros_Result>("sp_SelectPageOfSuperheros", pageNoParameter, pageSizeParameter, filterParameter);
+        }
+    
+        public virtual ObjectResult<sp_SelectSuperheroDetailsBySuperheroID_Result> sp_SelectSuperheroDetailsBySuperheroID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SelectSuperheroDetailsBySuperheroID_Result>("sp_SelectSuperheroDetailsBySuperheroID", idParameter);
         }
     }
 }

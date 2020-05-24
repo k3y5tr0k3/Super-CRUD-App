@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,20 +74,23 @@
     <Compile Include="Entities\sp_SelectPageOfSuperheros_Result.cs">
       <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\sp_SelectSuperheroDetailsBySuperheroID_Result.cs">
+      <DependentUpon>SuperheroRegistry.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Superhero.cs">
       <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\SuperheroRegistry.Context.cs" />
-    <Compile Include="Entities\SuperheroRegistry.cs" />
-    <Compile Include="Entities\SuperheroRegistry.Designer.cs">
-      <DependentUpon>SuperheroRegistry.cs</DependentUpon>
+    <Compile Include="Entities\SuperheroRegistry.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuperheroRegistry.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\SuperheroRegistry1.cs">
+    <Compile Include="Entities\SuperheroRegistry.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperheroRegistry.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\SuperheroRegistry1.Designer.cs">
+    <Compile Include="Entities\SuperheroRegistry.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
@@ -100,21 +105,11 @@
     <Compile Include="ServiceManagers\SuperheroServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\SuperheroRegistry.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SuperheroRegistry.Context1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\SuperheroRegistry.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SuperheroRegistry1.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config" />
     <EntityDeploy Include="Entities\SuperheroRegistry.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SuperheroRegistry1.Designer.cs</LastGenOutput>
+      <LastGenOutput>SuperheroRegistry.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.config" />
     <None Include="Entities\SuperheroRegistry.edmx.diagram">
       <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
     </None>
@@ -122,6 +117,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\SuperheroRegistry.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
+      <LastGenOutput>SuperheroRegistry.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\SuperheroRegistry.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SuperheroRegistry.edmx</DependentUpon>
+      <LastGenOutput>SuperheroRegistry.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

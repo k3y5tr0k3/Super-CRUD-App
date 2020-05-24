@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cdc31e8ca5464c4f8d962620f3f389d6" Name="Diagram1">
+      <Diagram DiagramId="7fb0d59cc3954a399ee07f80b27b4938" Name="Diagram1">
         <EntityTypeShape EntityType="SuperRegistryModel.Ability" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SuperRegistryModel.Affinity" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SuperRegistryModel.Alias" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
