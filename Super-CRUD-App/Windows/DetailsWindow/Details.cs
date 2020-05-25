@@ -33,6 +33,16 @@ namespace SuperCRUDLib.Windows.DetailsWindow
             superhero = await GetSuperhero(SuperheroID);
 
             // TODO: add data to labels here
+            SuperHeroNameInfoLbl.Text = superhero.Name;
+            AbilityDescriptionInfoLbl.Text = superhero.AbilityDescription;
+            AffinityTypeInfoLbl.Text = superhero.Affinity;
+            AbilityNameInfoLbl.Text = superhero.AbilityName; 
+            AbilityDescriptionInfoLbl.Text = superhero.AbilityDescription;
+            AliasFirstnameinfoLbl.Text = superhero.FirstName;
+            AliasLastnameInfoLbl.Text = superhero.LastName;
+            OriginTypeInfoLbl.Text = superhero.Origin;
+            RegionNameInfoLbl.Text = superhero.Region;
+
 
         }
 
